@@ -19,9 +19,6 @@ export default function FoodsAdd() {
 
   const navigate = useNavigate()
 
-  // form item states
-  
-
   // animation
   const [visible, setVisible] = useState(false)
 
@@ -47,7 +44,6 @@ export default function FoodsAdd() {
     })
   } 
   
-  // else { toast.error("Lutfen bos alanlari doldurunuz") }
 
   useEffect(() => {
     if( autControl() === null ) {
@@ -61,9 +57,6 @@ export default function FoodsAdd() {
   }, [])
 
   
-
-
-
   // image to base64
   const imageOnChange = (e: any, d: InputOnChangeData) => {
     const file = e.target.files[0]

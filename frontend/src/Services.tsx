@@ -40,7 +40,7 @@ export const logout = () => {
     return axiosConfig.get("register/userLogOut");
 }
 
-export const register = (name:string, surname:string, cityid:number, mobile:string, email:string, password: string) => {
+export const register = (name: string, surname: string, cityid: number, mobile: string, email: string, password: string) => {
     const data = {
         "name": name,
         "surname": surname,

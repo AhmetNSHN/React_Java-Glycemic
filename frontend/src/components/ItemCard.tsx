@@ -79,11 +79,14 @@ export default function FoodsItem(props: itemType) {
                         />
                     }
 
+
+
                     {props.status &&
                         <>
                             <Label as='a' color={props.item.enabled === true ? 'blue' : 'red'} ribbon>
                                 {props.item.enabled === true ? "Yayında" : "İnceleniyor"}
                             </Label>
+                            
                             <Card.Header> {props.item.name} </Card.Header>
                         </>
                     }
@@ -123,7 +126,7 @@ export default function FoodsItem(props: itemType) {
                         {props.isAdmin &&
                             <>
                                 <Button basic color='green' onClick={() => fncPush()} >
-                                    <Icon name='info' />Yayınla
+                                    <Icon name='send' />Yayınla
                                 </Button>
 
                                 <Button basic color='red' onClick={() => deleteItem()}>
