@@ -66,7 +66,6 @@ public class UserService extends SimpleUrlLogoutSuccessHandler implements UserDe
         }
         us.setPassword( encoder().encode( us.getPassword() ) );
         return uRepo.save(us);
-
     }
 
 
@@ -111,7 +110,6 @@ public class UserService extends SimpleUrlLogoutSuccessHandler implements UserDe
                 return register(user);
             }
         }
-
         return null;
     }
 
@@ -133,7 +131,6 @@ public class UserService extends SimpleUrlLogoutSuccessHandler implements UserDe
                 return register(user);
             }
         }
-
         return null;
     }
 
@@ -146,7 +143,4 @@ public class UserService extends SimpleUrlLogoutSuccessHandler implements UserDe
         }
         return null;
     }
-
-
-
 }

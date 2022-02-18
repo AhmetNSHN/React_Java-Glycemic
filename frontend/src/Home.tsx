@@ -48,7 +48,7 @@ export default function Home() {
 
   const search = (querry: string) => {
 
-    changePage(""+1)
+    changePage("" + 1)
 
     if (querry === "") {
       setFoodsArr(searchArr)
@@ -71,23 +71,23 @@ export default function Home() {
     const numCat = parseInt(str)
     setCurrentPage(1)
     setSelectCategory(numCat)
-    
+
     console.log(numCat)
 
     var newArr: ResultFoods[] = searchArr
-    if ( numCat !== 0 ) {
-      newArr = newArr.filter( item => item.cid === numCat )
+    if (numCat !== 0) {
+      newArr = newArr.filter(item => item.cid === numCat)
     }
-    
-    if ( searchData !== "" ) {
-      newArr = newArr.filter( item => item.name?.toLowerCase().includes(searchData) || (""+item.glycemicindex).includes(searchData) )
+
+    if (searchData !== "") {
+      newArr = newArr.filter(item => item.name?.toLowerCase().includes(searchData) || ("" + item.glycemicindex).includes(searchData))
     }
     setFoodsArr(newArr)
     console.log(newArr)
   }
 
   const changePage = (page: string) => {
-    
+
     const selectedpage = Number(page)
     setCurrentPage(selectedpage)
     if (selectedpage === 1) {
@@ -137,7 +137,7 @@ export default function Home() {
       </Grid>
 
       <Grid>
-        <Pagination activePage={currentPage}  totalPages={Math.ceil(foodsArr.length / 8)}
+        <Pagination activePage={currentPage} totalPages={Math.ceil(foodsArr.length / 8)}
           onPageChange={(e, { activePage }) => {
             changePage(activePage?.toString()!);
             console.log(activePage);

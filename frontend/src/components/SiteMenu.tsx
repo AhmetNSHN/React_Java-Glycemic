@@ -1,14 +1,11 @@
 
-import { count } from 'console'
 import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
-import { Button, Form, Header, Icon, Input, Label, Menu, Modal, Image, Feed, Divider } from 'semantic-ui-react'
+import { Button, Form, Icon, Label, Menu, Modal, Image, Feed, Divider } from 'semantic-ui-react'
 import { categories, cities } from '../Datas'
 import { ResultFoods } from '../models/IFoods'
-// import { counterReducer } from '..'
 import { IUser, UserResult } from '../models/IUser'
 import { logout, register, userAndAdminLogin } from '../Services'
 import { allDataBasket, control, deleteItemBasket, encryptData } from '../Util'
@@ -47,7 +44,6 @@ export default function SiteMenu() {
 
   //login user object
   const [user, setUser] = useState<UserResult | null>()
-  const u: UserResult = {}
 
   const [loginStatus, setLoginStatus] = useState(false)
   useEffect(() => {
@@ -134,25 +130,40 @@ export default function SiteMenu() {
 
   const fncRegister = () => {
     var credentials = true;
+    if (userMail === "") {
+      setMailError(true)
+      credentials = false
+    }
+    else {
+      let emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
+      if (emailRegex.test(userMail) === false) {
+        credentials = false
+        setMailError(true)
+        toast.error("Lütfen geçerli bir email giriniz!")
+      }
+      else {
+        setMailError(false)
+      }
+    }
     if (userName === "") { setNameError(true); credentials = false } else { setNameError(false) }
     if (userSurname === "") { setSurameError(true); credentials = false } else { setSurameError(false) }
     if (userCity === "0") { setCityError(true); credentials = false } else { setCityError(false) }
     if (userPhone === "") { setPhoneError(true); credentials = false } else { setPhoneError(false) }
-    if (userMail === "") { setMailError(true); credentials = false } else { setMailError(false) }
     if (userPass === "") { setPassError(true); credentials = false } else { setPassError(false) }
+
 
     if (credentials) {
       toast.loading("Kaydediliyor")
-      register( userName, userSurname, parseInt(userCity), userPhone, userMail, userPass ).then(res => {
+      register(userName, userSurname, parseInt(userCity), userPhone, userMail, userPass).then(res => {
         const usr: IUser = res.data
         if (usr.status!) {
           toast.success("Kayit Basarili")
           console.log(usr.result)
-          resetErrorStates() 
+          resetErrorStates()
         }
         toast.dismiss();
         setRegisterState(false);
-        
+
       }).catch(err => {
         toast.dismiss();
         toast.error("Kayit işlemi sırasında bir hata oluştu!")
@@ -161,19 +172,27 @@ export default function SiteMenu() {
     else { toast.error("Lutfen bos alanlari doldurunuz") }
   }
 
-  const resetErrorStates = () => {
-    setNameError(false); setUserName("")
-    setSurameError(false); setUserSurname("")
-    setCityError(false); setUserCity("")
-    setPhoneError(false); setUserPhone("")
-    setMailError(false); setUserMail("")
-    setPassError(false); setUserPass("")
-  }
+
 
   const login = () => {
 
     var credentials = true;
-    if (userMail === "") { setMailError(true); credentials = false } else { setMailError(false) }
+    if (userMail === "") {
+      setMailError(true)
+      credentials = false
+    }
+    else {
+      let emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
+      if (emailRegex.test(userMail) === false) {
+        credentials = false
+        setMailError(true)
+        toast.error("Lütfen geçerli bir email giriniz!")
+      }
+      else {
+        setMailError(false)
+      }
+    }
+
     if (userPass === "") { setPassError(true); credentials = false } else { setPassError(false) }
 
     if (credentials) {
@@ -190,13 +209,13 @@ export default function SiteMenu() {
           localStorage.setItem("user", cryptString)
           localStorage.setItem("aut", userAutString)
           setLoginStatus(usr.status!)
-          resetErrorStates() 
+          resetErrorStates()
           setLoginState(false)
-          
+
         }
         setRegisterState(false);
         toast.dismiss();
-        
+
       }).catch(err => {
         setRegisterState(false);
         toast.dismiss();
@@ -204,35 +223,33 @@ export default function SiteMenu() {
       })
     }
     else { toast.error("Lutfen bos alanlari doldurunuz") }
+  }
 
+  const resetErrorStates = () => {
+    setNameError(false); setUserName("")
+    setSurameError(false); setUserSurname("")
+    setCityError(false); setUserCity("")
+    setPhoneError(false); setUserPhone("")
+    setMailError(false); setUserMail("")
+    setPassError(false); setUserPass("")
   }
 
   // basket action
-  const [basketCount, setBasketCount] = useState(0)
-  const [visible, setVisible] = useState(false)
   const [basketItems, setBasketItems] = useState<ResultFoods[]>([])
-  const [totalGlycemic, setTotalGlycemic] = useState(0)
-
 
   useEffect(() => {
     setBasketItems(allDataBasket())
-    setTotalGlycemic(basketItems.reduce((total, currentValue) => total = total + currentValue.glycemicindex!, 0))
   }, [foodbasketState])
 
   const deleteFnc = (index: number) => {
     setBasketItems(deleteItemBasket(index))
-    setTotalGlycemic(basketItems.reduce((total, currentValue) => total = total + currentValue.glycemicindex!, 0))
   }
 
 
-  const style = {
-    fontSize: "36px"
-  }
   const imgProperties = {
     width: "200px",
     height: "200px"
   }
-
 
 
   return (
@@ -266,9 +283,6 @@ export default function SiteMenu() {
             onClick={(e, data) => handleItemClick(data.name!)}
           />
         }
-
-
-
         <Menu.Menu position='right'>
 
 
@@ -312,8 +326,7 @@ export default function SiteMenu() {
         </Menu.Menu>
       </Menu>
 
-      {
-        loginState &&
+      {loginState &&
 
         <Modal
           onClose={() => setLoginState(false)}
@@ -336,7 +349,6 @@ export default function SiteMenu() {
                   <Form.Input error={passError} value={userPass} onChange={(e, d) => setUserPass(d.value)} type="password" placeholder='Şifre' />
                 </div>
               </Form>
-
             </Modal.Description>
 
           </Modal.Content>
@@ -355,22 +367,19 @@ export default function SiteMenu() {
         </Modal>
       }
 
-      {
-        foodbasketState &&
+      {foodbasketState &&
 
         <Modal
           onClose={() => setFoodbasketState(false)}
           onOpen={() => setFoodbasketState(true)}
           open={foodbasketState}
-          size='small'
-        >
+          size='small'>
+
           <Modal.Header>Sepet</Modal.Header>
-          <Modal.Content image scrolling style={{marginBottom:"40px"}}>
-
+          <Modal.Content image scrolling style={{ marginBottom: "40px" }}>
             <img src='./basket.png' style={imgProperties} />
-            <Modal.Description style={{ marginLeft: "40px"}}>
 
-
+            <Modal.Description style={{ marginLeft: "40px" }}>
               <Feed >
                 {basketItems.map((item, index) =>
 
@@ -395,23 +404,21 @@ export default function SiteMenu() {
                   </Feed.Event>
                 )}
               </Feed>
-              <Divider section  />
-              <p style={{ textAlign: 'center'}}>Eklediginiz gidalarin toplam glisemik indeksi = <a>{basketItems.reduce((total, currentValue) => total = total + currentValue.glycemicindex!, 0)}</a><br/>{" "}</p>
+              <Divider section />
+              <p style={{ textAlign: 'center' }}>Eklediginiz gidalarin toplam glisemik indeksi = <a>{basketItems.reduce((total, currentValue) => total = total + currentValue.glycemicindex!, 0)}</a><br />{" "}</p>
             </Modal.Description>
           </Modal.Content>
         </Modal>
       }
 
-      {
-        registerState &&
+      {registerState &&
 
         <Modal
           onClose={() => setRegisterState(false)}
           onOpen={() => setRegisterState(true)}
           open={registerState}
           size='small'
-          closeOnDocumentClick={false}
-        >
+          closeOnDocumentClick={false}>
 
           <Modal.Header>Kaydol</Modal.Header>
           <Modal.Content image>
@@ -431,7 +438,7 @@ export default function SiteMenu() {
 
                 <div className="field">
                   <label>Şehir</label>
-                  <Form.Select  error={cityError} value={userCity} placeholder='Şehir Seç' options={cities} search onChange={(e,d) => setUserCity(""+d.value)} />
+                  <Form.Select error={cityError} value={userCity} placeholder='Şehir Seç' options={cities} search onChange={(e, d) => setUserCity("" + d.value)} />
                 </div>
 
                 <div className="field">
@@ -449,7 +456,6 @@ export default function SiteMenu() {
                   <Form.Input error={passError} value={userPass} onChange={(e, d) => setUserPass(d.value)} type="password" name="password" placeholder="Şifre" />
                 </div>
 
-
               </Form>
             </Modal.Description>
 
@@ -462,7 +468,7 @@ export default function SiteMenu() {
               content="Kaydol"
               labelPosition='right'
               icon='checkmark'
-              onClick={() =>  fncRegister()}
+              onClick={() => fncRegister()}
               positive
             />
           </Modal.Actions>
@@ -472,8 +478,8 @@ export default function SiteMenu() {
       <Modal
         size='mini'
         open={isLogOut}
-        onClose={() => setIsLogOut(false)}
-      >
+        onClose={() => setIsLogOut(false)}>
+
         <Modal.Header>Çıkış İşlemi</Modal.Header>
         <Modal.Content>
           <p>Çıkmak istediğinizden emin misniz?</p>
@@ -487,8 +493,6 @@ export default function SiteMenu() {
           </Button>
         </Modal.Actions>
       </Modal>
-
-
     </>
   )
 }

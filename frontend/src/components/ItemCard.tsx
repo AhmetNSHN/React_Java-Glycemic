@@ -1,9 +1,8 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { Button, Card, Grid, Icon, Image, Label, SemanticCOLORS } from 'semantic-ui-react';
+import { toast } from 'react-toastify';
+import { Button, Card, Grid, Icon, Image, Label,} from 'semantic-ui-react';
 import { categories } from '../Datas';
-import { IFoods, ISingleFoods, ResultFoods } from '../models/IFoods';
+import { ISingleFoods, ResultFoods } from '../models/IFoods';
 import { adminFoodDelete, adminWaitPushFood } from '../Services';
 import { basketAdd } from '../Util';
 
@@ -15,25 +14,6 @@ interface itemType {
 
 
 export default function FoodsItem(props: itemType) {
-
-    // enum reduxState {
-    //     ADD, DELETE
-    //   }
-
-    // const navigate = useNavigate()
-    // const dispatch = useDispatch()
-
-    // const glycemicColor = (index: number): SemanticCOLORS => {
-    //     var color: SemanticCOLORS = 'red'
-    //     if (index > 0 && index < 56) {
-    //         color = 'green'
-    //     } else if (index > 55 && index < 71) {
-    //         color = 'orange'
-    //     } else if (index > 70) {
-    //         color = 'red'
-    //     }
-    //     return color;
-    // }
 
     const addBasket = () => {
         basketAdd(props.item)
@@ -55,7 +35,7 @@ export default function FoodsItem(props: itemType) {
                 window.location.href = "/waitFoodsList"
             }
         }).catch(err => {
-
+           toast.error("" + err)
         })
     }
 
@@ -67,42 +47,20 @@ export default function FoodsItem(props: itemType) {
                 window.location.href = "/waitFoodsList"
             }
         }).catch(err => {
-
+            toast.error("" + err)
         })
-    }
-
-    const positive = {
-        color: "green",
-        fontSize: "50px",
-        paddingHorizontal: "2px",
-        fontFamily: "Arial"
-
-    };
-
-    const neutral = {
-        color: "orange",
-        fontSize: "50px",
-        paddingHorizontal: "2px",
-        fontFamily: "Arial"
-    }
-
-    const negative = {
-        color: "red",
-        fontSize: "50px",
-        paddingHorizontal: "2px",
-        fontFamily: "Arial"
-    }
-
-    const mystyle4 = {
-        textAlign: "center" as const
     }
 
     const index = props.item.glycemicindex
 
+    const positive = { color: "green"}
+    const neutral = { color: "orange"}
+    const negative = { color: "red"}
+
+    
     return (
         <Grid.Column mobile={8} tablet={8} computer={4} >
             <Card fluid >
-                {/* color={glycemicColor(props.item.glycemicindex!)} */}
                 <Card.Content>
 
                     {props.item.image !== "" &&
@@ -130,27 +88,22 @@ export default function FoodsItem(props: itemType) {
                         </>
                     }
 
-                    <Card.Header> {props.item.name} </Card.Header>
-                    <Card.Meta>{ categories[props.item.cid!].text }</Card.Meta>
+                    {!props.status &&
+                        < Card.Header > {props.item.name} </Card.Header>
+                    }
+
+                    <Card.Meta>{categories[props.item.cid!].text}</Card.Meta>
 
                     <p>
                         glisemik indeksi:
                     </p>
-                    <p style={Object.assign({}, index! < 50 ? positive : props.item.glycemicindex! > 70 ? negative : neutral, {
+                    <p style={Object.assign(index! < 50 ? positive : props.item.glycemicindex! > 70 ? negative : neutral, {
                         fontSize: "50px",
                         paddingHorizontal: "2px",
                         fontFamily: "Arial"
                     })} >
                         {index} </p>
 
-
-                    {/* <Card.Description>
-                        <Card.Meta>{props.item.createdBy === null ? 'user@mail.com' : props.item.createdBy}</Card.Meta>
-                        <Card.Meta>{fncDateConvert(props.item.createdDate!)}</Card.Meta>
-
-                        
-
-                    </Card.Description> */}
                 </Card.Content>
                 <Card.Content extra>
                     <div className='ui two buttons'>

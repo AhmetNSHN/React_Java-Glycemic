@@ -20,7 +20,6 @@ public class AuditAwareConfig implements AuditorAware<String> {
         return new AuditAwareConfig();
     }
 
-
     public List<String> roles() {
         List<String> list = new ArrayList<>();
         Authentication aut = SecurityContextHolder.getContext().getAuthentication();
@@ -39,5 +38,4 @@ public class AuditAwareConfig implements AuditorAware<String> {
         }
         return Optional.ofNullable(authentication.getName());
     }
-
 }

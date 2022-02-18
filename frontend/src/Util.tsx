@@ -16,8 +16,8 @@ export const decryptData = (ciphertext: any, salt: string) => {
     }
 }
 
-export const control = () => {
 
+export const control = () => {
 
     const localUser = localStorage.getItem("user")
     if (localUser) {
@@ -30,12 +30,12 @@ export const control = () => {
             localStorage.removeItem("user")
             return null;
         }
-
     }
     else {
         return null
     }
 }
+
 
 export const fncDateConvert = (time: number): string => {
     let dt = new Date(time)
@@ -44,6 +44,7 @@ export const fncDateConvert = (time: number): string => {
     }
     return dt.getDate() + "." + ((dt.getMonth() + 1) > 9 ? (dt.getMonth() + 1) : "0" + (dt.getMonth() + 1)) + "." + dt.getFullYear()
 }
+
 
 // aut control
 export const autControl = () => {
@@ -65,6 +66,7 @@ export const autControl = () => {
     }
 }
 
+
 // basket add item and control
 export const basketAdd = (item: ResultFoods) => {
 
@@ -84,6 +86,7 @@ export const basketAdd = (item: ResultFoods) => {
     }
 
 }
+
 
 // basket all items data
 export const allDataBasket = () => {

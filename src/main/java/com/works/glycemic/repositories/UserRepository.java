@@ -1,6 +1,5 @@
 package com.works.glycemic.repositories;
 
-import com.works.glycemic.models.Role;
 import com.works.glycemic.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 

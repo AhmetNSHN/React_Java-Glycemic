@@ -14,13 +14,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         this.service = service;
     }
 
-    // sql -> jpa query -> user control
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService((service)).passwordEncoder(service.encoder());
     }
 
-    // hangi yöntemle giriş yapılarak, rollere göre hangi servis kullanılcak?
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
