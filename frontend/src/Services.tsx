@@ -40,17 +40,17 @@ export const logout = () => {
     return axiosConfig.get("register/userLogOut");
 }
 
-export const register = () => {
+export const register = (name:string, surname:string, cityid:number, mobile:string, email:string, password: string) => {
     const data = {
-        name: "Ali Veli5",
-        surname: "Bilir",
-        cityid: 1,
-        mobile: "5436667788",
-        email: "aliveli5@mail.com",
-        password: "12345",
-        enabled: true,
-        tokenExpired: true,
-        roles: [
+        "name": name,
+        "surname": surname,
+        "cityid": cityid,
+        "mobile": mobile,
+        "email": email,
+        "password": password,
+        "enabled": true,
+        "tokenExpired": true,
+        "roles": [
             { "rid": 0, "name": "role_user" }
         ]
     }

@@ -5,13 +5,13 @@ export const categories = [
     { key: '3', text: 'İçecekler', value: '3' },
     { key: '4', text: 'Tatlılar', value: '4' },
     { key: '5', text: 'Kuruyemiş', value: '5' },
-    { key: '6', text: 'Meyveler', value: '6' }, 
-    { key: '7', text: 'Diğerleri', value: '7' },  
+    { key: '6', text: 'Meyveler', value: '6' },
+    { key: '7', text: 'Süt Ürünleri', value: '7'}, 
+    { key: '8', text: 'Diğerleri', value: '8' }  
 ]
 
 
 export const cities = [
-
     {key: '0', text: 'Şehir Seç', value: '0'},
     {key: '1', text: 'İstanbul', value: '1'},
     {key: '2', text: 'Adana', value: '2'},
@@ -25,6 +25,5 @@ export const cities = [
     {key: '10', text: 'Gaziantep', value: '10'},
     {key: '11', text: 'Hatay', value: '11'},
     {key: '12', text: 'Giresun', value: '12'},
-    {key: '13', text: 'Ordu', value: '13'},
-
+    {key: '13', text: 'Ordu', value: '13'}
 ]

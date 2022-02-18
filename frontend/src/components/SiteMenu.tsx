@@ -6,7 +6,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
 import { Button, Form, Header, Icon, Input, Label, Menu, Modal, Image, Feed, Divider } from 'semantic-ui-react'
-import { categories } from '../Datas'
+import { categories, cities } from '../Datas'
 import { ResultFoods } from '../models/IFoods'
 // import { counterReducer } from '..'
 import { IUser, UserResult } from '../models/IUser'
@@ -34,7 +34,7 @@ export default function SiteMenu() {
   const [userPhone, setUserPhone] = useState("");
   const [userMail, setUserMail] = useState("");
   const [userPass, setUserPass] = useState("");
-  const [userCity, setUserCity] = useState("");
+  const [userCity, setUserCity] = useState("0");
 
   // text box states
   const [nameError, setNameError] = useState(false);
@@ -136,14 +136,14 @@ export default function SiteMenu() {
     var credentials = true;
     if (userName === "") { setNameError(true); credentials = false } else { setNameError(false) }
     if (userSurname === "") { setSurameError(true); credentials = false } else { setSurameError(false) }
-    if (userCity === "") { setCityError(true); credentials = false } else { setCityError(false) }
+    if (userCity === "0") { setCityError(true); credentials = false } else { setCityError(false) }
     if (userPhone === "") { setPhoneError(true); credentials = false } else { setPhoneError(false) }
     if (userMail === "") { setMailError(true); credentials = false } else { setMailError(false) }
     if (userPass === "") { setPassError(true); credentials = false } else { setPassError(false) }
 
     if (credentials) {
       toast.loading("Kaydediliyor")
-      register().then(res => {
+      register( userName, userSurname, parseInt(userCity), userPhone, userMail, userPass ).then(res => {
         const usr: IUser = res.data
         if (usr.status!) {
           toast.success("Kayit Basarili")
@@ -365,14 +365,13 @@ export default function SiteMenu() {
           size='small'
         >
           <Modal.Header>Sepet</Modal.Header>
-          <Modal.Content image>
+          <Modal.Content image scrolling style={{marginBottom:"40px"}}>
 
             <img src='./basket.png' style={imgProperties} />
-            <Modal.Description style={{ marginLeft: "40px" }}>
+            <Modal.Description style={{ marginLeft: "40px"}}>
 
 
               <Feed >
-
                 {basketItems.map((item, index) =>
 
                   <Feed.Event key={index} >
@@ -396,8 +395,8 @@ export default function SiteMenu() {
                   </Feed.Event>
                 )}
               </Feed>
-              <Divider section style={{ textAlign: 'center' }} />
-              <p>Eklediginiz gidalarin toplam glisemik indeksi = <a>{basketItems.reduce((total, currentValue) => total = total + currentValue.glycemicindex!, 0)}</a></p>
+              <Divider section  />
+              <p style={{ textAlign: 'center'}}>Eklediginiz gidalarin toplam glisemik indeksi = <a>{basketItems.reduce((total, currentValue) => total = total + currentValue.glycemicindex!, 0)}</a><br/>{" "}</p>
             </Modal.Description>
           </Modal.Content>
         </Modal>
@@ -432,7 +431,7 @@ export default function SiteMenu() {
 
                 <div className="field">
                   <label>Şehir</label>
-                  <Form.Input error={cityError} value={userCity} onChange={(e, d) => setUserCity(d.value)} type="text" name="cıtyId" placeholder="Şehir" />
+                  <Form.Select  error={cityError} value={userCity} placeholder='Şehir Seç' options={cities} search onChange={(e,d) => setUserCity(""+d.value)} />
                 </div>
 
                 <div className="field">
