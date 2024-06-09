@@ -1,6 +1,6 @@
 # Glycemic
 
-The aim of the project is to provide users with the glycemic values of foods. Users, like admins, can contribute by adding foods, and they can calculate the glycemic index by selecting foods.
+The aim of the project is to provide users with the glycemic index of foods. Users, like admins, can contribute by adding foods, and they can calculate the glycemic index by selecting foods.
 
 ## Screenshots:
 
