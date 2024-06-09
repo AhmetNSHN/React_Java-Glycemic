@@ -1,27 +1,33 @@
 # Glycemic
 
-Projenin amacı kullanıcıları Gıdaların glisemik değerlerine ulaştırmaktır. Kullanıcılarda adminler gibi gıda ekleyerek kaktkıda bulunabilir, gıdalalrı seçerek glisemik indeks hesaplaması yapabilirler.
+Projenin amacı kullanıcıları Gıdaların glisemik değerlerine ulaştırmaktır. Kullanıcılarda adminler gibi gıda ekleyerek kaktkıda bulunabilir, gıdaları seçerek glisemik indeks hesaplaması yapabilirler.
 
 Anasayfa:<br/><br/>
-<img src="https://github.com/AhmetNSHN/Glycemic/blob/master/src/main/resources/ScreenShots/1.png" width="800">
+![1](https://github.com/AhmetNSHN/React_Java-Glycemic/assets/64427438/fc9ddb26-8189-4c41-b670-1269bffa0236)
 
 <br/><br/><br/> Kayıt olun <br/><br/>
-<img src="https://github.com/AhmetNSHN/Glycemic/blob/master/src/main/resources/ScreenShots/3.png" width="800">
+![2](https://github.com/AhmetNSHN/React_Java-Glycemic/assets/64427438/5ac7ddc1-bc0e-4e4e-88c3-562ed79fab5e)
+
 
 <br/><br/><br/> Giriş yapın <br/><br/>
-<img src="https://github.com/AhmetNSHN/Glycemic/blob/master/src/main/resources/ScreenShots/2.png" width="800">
+![3](https://github.com/AhmetNSHN/React_Java-Glycemic/assets/64427438/d27ab815-b4b7-491a-a786-6b88cc6620ad)
+
 
 <br/><br/><br/> Tüketmek istediğiniz gıdaları sepetınıze ekleyin ve toplam glisemik indeksini görün <br/><br/>
-<img src="https://github.com/AhmetNSHN/Glycemic/blob/master/src/main/resources/ScreenShots/4.png" width="800">
+![4](https://github.com/AhmetNSHN/React_Java-Glycemic/assets/64427438/1640efa9-2149-4743-942d-8cbc3f117451)
+
 
 <br/><br/><br/>Gıda ekleyebilirsiniz <br/><br/>
-<img src="https://github.com/AhmetNSHN/Glycemic/blob/master/src/main/resources/ScreenShots/6.png" width="800">
+![5](https://github.com/AhmetNSHN/React_Java-Glycemic/assets/64427438/64d1d421-f3a1-45c0-aa33-95a426a752b2)
+
 
 <br/><br/><br/>Eklediğiniz gıdalar bu sayfada. Eklediğiniz gıdalar admin tarafından incelenir, onaylanıp yayına alınır. Adminlerin eklediği gıdalar otomatik onaylanır. <br/><br/>
-<img src="https://github.com/AhmetNSHN/Glycemic/blob/master/src/main/resources/ScreenShots/7.png" width="800">
+![6](https://github.com/AhmetNSHN/React_Java-Glycemic/assets/64427438/84d4b700-a452-41bd-af92-64ab7e6ce166)
+
 
 <br/><br/><br/> Adminler bu sayfada kullanıcılar tarafından eklenen gıdaları onaylar <br/><br/>
-<img src="https://github.com/AhmetNSHN/Glycemic/blob/master/src/main/resources/ScreenShots/8.png" width="800">
+![7](https://github.com/AhmetNSHN/React_Java-Glycemic/assets/64427438/8c72a35f-1bc7-4ae3-9f88-7d4fff87857a)
+
 
 <br/><br/><br/> Kullanılan teknolojiler : React.js, Hibernate, Spring Boot, Spring Security, Semantic-ui, H2 Database
 
