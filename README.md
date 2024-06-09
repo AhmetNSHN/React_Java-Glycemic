@@ -1,6 +1,7 @@
 # Glycemic
 
-The aim of the project is to provide users with the glycemic index of foods. Users, like admins, can contribute by adding foods, and they can calculate the glycemic index by selecting foods.
+Projenin amacı kullanıcıları Gıdaların glisemik değerlerine ulaştırmaktır. Kullanıcılarda adminler gibi gıda ekleyerek katkıda bulunabilir, gıdaları seçerek glisemik indeks hesaplaması yapabilirler.
+
 
 ## Ekran Görüntüleri:
 
