@@ -3,6 +3,7 @@
 The purpose of this project is to provide users with access to the glycemic values of foods. Users can contribute by adding foods, just like admins, and can calculate the glycemic index by selecting foods.
 
 
+
 ## Screenshots:
 
 ### Home Page:
